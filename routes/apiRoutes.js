@@ -54,7 +54,7 @@ module.exports = function(app) {
 
   app.delete("/api/notes/:id", function(req, res) {
     // Sets length of note to 0
-    notes.length = 0;
+    // notes.length = 0;
     var id = req.params.id;
   //  waitListData.length = 0;
 
