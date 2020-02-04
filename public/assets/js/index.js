@@ -162,27 +162,24 @@ getAndRenderNotes();
     // This line is the magic. It's very similar to the standard ajax function we used.
     // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
     // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-    // depending on if a tables is available or not.
+    // depending on if a note is available or not.
 
     $.post("/api/notes", newNote,
       function(data) {
 
-        // If a table is available... tell user they are booked.
+        // If the note is posted... tell user the note was posted successfully.
         if (data) {
-          alert("Yay! You are officially booked!");
+          alert("Yay! Your note is posted successfully!");
         }
 
-        // If a table is available... tell user they on the waiting list.
+        // If the note was not posted... send an error message.
         else {
-          alert("Sorry you are on the wait list");
+          alert("Sorry, your note was not posted.");
         }
 
         // Clear the form when submitting
-        $("#reserve-name").val("");
-        $("#reserve-phone").val("");
-        $("#reserve-email").val("");
-        $("#reserve-unique-id").val("");
-
+        $("#note.title").val("");
+        $("#note.text").val("");
       });
 
   });
@@ -223,11 +220,11 @@ function runNoteQuery() {
       });
   }
 
-  // This function resets all of the data in our tables. This is intended to let you restart a demo.
+  // This function resets all of the data in our notes. This is intended to let you restart a demo.
   function clearNote() {
     alert("Clearing...");
 
-    // Clear the tables on the server and then empty the elements on the client
+    // Clear the notes on the server and then empty the elements on the client
     $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
       $("#noteList").empty();
     });
