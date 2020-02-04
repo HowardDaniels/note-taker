@@ -56,8 +56,49 @@ module.exports = function(app) {
     // Sets length of note to 0
     // notes.length = 0;
     var id = req.params.id;
+
+    fs.unlink(app.get('file-path'), function (e) {
+ 
+      if (e) {
+
+          app.set('mess', e.message);
+          next();
+
+      } 
+      
+      else {
+
+          res.json({
+
+              mess: 'file deleted',
+              path: app.get('file-path')
+
+          });
+
+      }
+
+    
   //  waitListData.length = 0;
 
     res.json({ ok: true });
   });
+});
 };
+
+/* fs.unlink(app.get('file-path'), function (e) {
+ 
+        if (e) {
+ 
+            app.set('mess', e.message);
+            next();
+ 
+        } else {
+ 
+            res.json({
+ 
+                mess: 'file deleted',
+                path: app.get('file-path')
+ 
+            });
+ 
+        } */
