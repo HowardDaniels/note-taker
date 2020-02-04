@@ -1,5 +1,5 @@
-let express = require('express'),
-path = require('path'),
+let express = require('express');
+path = require('path');
 fs = require('fs');
  
 app = module.exports = express();
