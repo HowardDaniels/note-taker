@@ -1,3 +1,12 @@
+let express = require('express'),
+path = require('path'),
+fs = require('fs'),
+ 
+app = module.exports = express();
+ 
+app.set('file-path', path.join(__dirname, 'file.txt'));
+app.set('mess', '');
+
 // ===============================================================================
 // LOAD DATA
 // We are linking our routes to a series of "data" sources.
@@ -57,7 +66,7 @@ module.exports = function(app) {
     // notes.length = 0;
     var id = req.params.id;
 
-    fs.unlink(app.get(''), function (e) {
+    fs.unlink(app.get('file-path'), function (e) {
  
       if (e) {
 
