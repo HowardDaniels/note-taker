@@ -7,19 +7,19 @@ var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
 // activeNote is used to keep track of the note in the textarea
-// var activeNote = {};
+var activeNote = {};
 
 // A function for getting all notes from the db
-/*var getNotes = function() {
+var getNotes = function() {
   return $.ajax({
     url: "/api/notes",
     data: note,
     method: "GET"
   });
-}; */
+};
 
 // A function for saving a note to the db
-/*var saveNote = function(note) {
+var saveNote = function(note) {
   return $.ajax({
     url: "/api/notes",
     data: note,
@@ -34,7 +34,7 @@ var deleteNote = function(id) {
     data: note,
     method: "DELETE"
   });
-}; */
+};
 
 // If there is an activeNote, display it, otherwise render empty inputs
 var renderActiveNote = function() {
@@ -145,3 +145,53 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
+
+
+/*
+function runNoteQuery() {
+    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
+    $.ajax({ url: "/api/notes", method: "GET" })
+      .then(function(notes) {
+
+        // Here we then log the notes to console, where it will show up as an object.
+        console.log(notes);
+        console.log("------------------------------------");
+
+        // Loop through and display each of the notes
+        for (var i = 0; i < notes.length; i++) {
+
+          // Get a reference to the notesList element and populate it with tables
+          var notes = $("#noteList");
+
+          // Then display the fields in the HTML (Section Name, Date, URL)
+          var listItem = $("<li class='list-group-item mt-4'>");
+
+          listItem.append(
+            $("<h2>").text("Note #" + (i + 1)),
+            $("<hr>"),
+            $("<h2>").text("Note title: " + notes[i].title),
+            $("<h2>").text("Note text : " + notes[i].noteText),
+          );
+
+          noteList.append(listItem);
+        }
+      });
+  }
+
+  // This function resets all of the data in our tables. This is intended to let you restart a demo.
+  function clearNote() {
+    alert("Clearing...");
+
+    // Clear the tables on the server and then empty the elements on the client
+    $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
+      $("#noteList").empty();
+    });
+  }
+
+  $("#clear").on("click", clearTable);
+
+
+  // Run Queries!
+  // ==========================================
+  runNoteQuery();
+*/
