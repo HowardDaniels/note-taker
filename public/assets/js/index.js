@@ -146,8 +146,53 @@ $noteText.on("keyup", handleRenderSaveBtn);
 // Gets and renders the initial list of notes
 getAndRenderNotes();
 
+/* Sent to the server:
 
-/*
+  $(".submit").on("click", function(event) {
+    event.preventDefault();
+
+    // Here we grab the note elements
+    var newNote = {
+      noteTitle: $("#note-title").val().trim(),
+      noteText: $("#note-text).val().trim(),
+    };
+
+    console.log(newNote);
+
+    // This line is the magic. It's very similar to the standard ajax function we used.
+    // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
+    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
+    // depending on if a tables is available or not.
+
+    $.post("/api/notes", newNote,
+      function(data) {
+
+        // If a table is available... tell user they are booked.
+        if (data) {
+          alert("Yay! You are officially booked!");
+        }
+
+        // If a table is available... tell user they on the waiting list.
+        else {
+          alert("Sorry you are on the wait list");
+        }
+
+        // Clear the form when submitting
+        $("#reserve-name").val("");
+        $("#reserve-phone").val("");
+        $("#reserve-email").val("");
+        $("#reserve-unique-id").val("");
+
+      });
+
+  });
+
+
+*/
+
+
+/* Retrieved from the server:
+
 function runNoteQuery() {
     // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
     $.ajax({ url: "/api/notes", method: "GET" })
