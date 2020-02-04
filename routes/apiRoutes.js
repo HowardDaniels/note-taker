@@ -57,7 +57,7 @@ module.exports = function(app) {
     // notes.length = 0;
     var id = req.params.id;
 
-    fs.unlink(app.get('file-path'), function (e) {
+    fs.unlink(app.get(''), function (e) {
  
       if (e) {
 
