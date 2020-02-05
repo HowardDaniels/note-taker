@@ -53,6 +53,7 @@ new HTML code goes here -->
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
   <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
@@ -69,7 +70,7 @@ new HTML code goes here -->
       <h2 class="text-center">Make a note</h2>
       <br>
       <div class="text-center">
-        <a href="/notes">
+        <a href="/">
           <button class="btn btn-lg btn-primary">
             <span class="fa fa-list-alt"></span> View Notes</button>
         </a>
@@ -92,7 +93,9 @@ new HTML code goes here -->
                 <label for="reserve-phone">Note Text</label>
                 <textarea class="form-control" id="note-text"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary submit">Submit</button>
+              <button type="submit" class="btn btn-primary submit" id="submit">Submit</button>
+                <button class="btn btn-primary" id="save">Save</button>
+                <button class="btn btn-primary" id="new">New Note</button>
             </form>
           </div>
         </div>
