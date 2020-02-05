@@ -1,6 +1,6 @@
 let express = require('express');
-path = require('path');
-fs = require('fs');
+var path = require('path');
+const fs = require('fs');
  
 app = module.exports = express();
  
@@ -13,7 +13,7 @@ app.set('mess', '');
 // These data sources hold arrays of information on table-data, waitinglist, etc.
 // ===============================================================================
 
-var notes = require("../db/db.json");
+var notes = require("../journal.json");
 // var waitListData = require("../data/waitinglistData");
 
 
@@ -31,6 +31,7 @@ module.exports = function(app) {
   app.get("/api/notes", function(req, res) {
   res.json(notes);
   });
+
 /*
   app.get("/api/waitlist", function(req, res) {
     res.json(waitListData);

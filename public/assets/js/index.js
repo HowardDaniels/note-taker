@@ -1,4 +1,4 @@
-fs = require('fs');
+const fs = require('fs');
 
 var $noteTitle = $("#note-title");
 var $noteText = $("#textarea");
@@ -57,7 +57,8 @@ var renderActiveNote = function() {
 var handleNoteSave = function() {
   var newNote = {
     title: $noteTitle.val(),
-    text: $noteText.val()
+    text: $noteText.val(),
+    id: $noteTitle.val()
   };
 
   saveNote(newNote).then(function(data) {
