@@ -4,7 +4,7 @@ fs = require('fs');
  
 app = module.exports = express();
  
-app.set('file-path', path.join(__dirname, 'file.txt'));
+app.set('file-path', path.join(__dirname, 'db.json'));
 app.set('mess', '');
 
 // ===============================================================================
