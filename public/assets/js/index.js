@@ -1,5 +1,5 @@
 const fs = require('fs');
-
+// revert IDs and classes to old code
 var $noteTitle = $("#note-title");
 var $noteText = $("#textarea");
 var $saveNoteBtn = $("#save");
@@ -136,7 +136,7 @@ var getAndRenderNotes = function() {
     renderNoteList(data);
   });
 };
-
+// this is where you need to link the html to tthe functions
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
