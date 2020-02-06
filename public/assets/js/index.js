@@ -1,4 +1,5 @@
 const fs = require('fs');
+const express = require("express");
 
 var $noteTitle = $(".note-title");
 var $noteText = $(".note-textarea");
@@ -13,7 +14,7 @@ var activeNote = {};
 var getNotes = function() {
   return $.ajax({
     url: "/api/notes",
-    data: note,
+   // data: note,
     method: "GET"
   });
 };
@@ -31,14 +32,14 @@ var saveNote = function(note) {
 var deleteNote = function(id) {
   return $.ajax({
     url: "/api/notes" + id,
-    data: note,
+   // data: note,
     method: "DELETE"
   });
 };
 
 // If there is an activeNote, display it, otherwise render empty inputs
 var renderActiveNote = function() {
-  $saveNoteBtn.hide();
+ // $saveNoteBtn.hide();
 
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
@@ -110,7 +111,7 @@ var handleRenderSaveBtn = function() {
 
 // Render's the list of note titles
 var renderNoteList = function(notes) {
-  $noteList.empty();
+ $noteList.empty();
 
   var noteListItems = [];
 
