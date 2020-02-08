@@ -11,7 +11,6 @@ var activeNote = {};
 var getNotes = function() {
   return $.ajax({
     url: "/api/notes",
-   // data: note,
     method: "GET"
   });
 };
@@ -23,20 +22,19 @@ var saveNote = function(note) {
     data: note,
     method: "POST"
   });
-}; 
+};
 
 // A function for deleting a note from the db
 var deleteNote = function(id) {
   return $.ajax({
-    url: "/api/notes" + id,
-   // data: note,
+    url: "api/notes/" + id,
     method: "DELETE"
   });
 };
 
 // If there is an activeNote, display it, otherwise render empty inputs
 var renderActiveNote = function() {
- $saveNoteBtn.hide();
+  $saveNoteBtn.hide();
 
   if (activeNote.id) {
     $noteTitle.attr("readonly", true);
@@ -56,7 +54,6 @@ var handleNoteSave = function() {
   var newNote = {
     title: $noteTitle.val(),
     text: $noteText.val()
-  //  id: $noteTitle.val()
   };
 
   saveNote(newNote).then(function(data) {
@@ -108,7 +105,7 @@ var handleRenderSaveBtn = function() {
 
 // Render's the list of note titles
 var renderNoteList = function(notes) {
- $noteList.empty();
+  $noteList.empty();
 
   var noteListItems = [];
 
@@ -134,7 +131,7 @@ var getAndRenderNotes = function() {
     renderNoteList(data);
   });
 };
-// this is where you need to link the html to the functions
+
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
@@ -144,95 +141,3 @@ $noteText.on("keyup", handleRenderSaveBtn);
 
 // Gets and renders the initial list of notes
 getAndRenderNotes();
-
-/* Sent to the server:
-
-  $(".submit").on("click", function(event) {
-    event.preventDefault();
-
-    // Here we grab the note elements
-    var newNote = {
-      noteTitle: $("#note-title").val().trim(),
-      noteText: $("#note-text).val().trim(),
-    };
-
-    console.log(newNote);
-
-    // This line is the magic. It's very similar to the standard ajax function we used.
-    // Essentially we give it a URL, we give it the object we want to send, then we have a "callback".
-    // The callback is the response of the server. In our case, we set up code in api-routes that "returns" true or false
-    // depending on if a note is available or not.
-
-    $.post("/api/notes", newNote,
-      function(data) {
-
-        // If the note is posted... tell user the note was posted successfully.
-        if (data) {
-          alert("Yay! Your note is posted successfully!");
-        }
-
-        // If the note was not posted... send an error message.
-        else {
-          alert("Sorry, your note was not posted.");
-        }
-
-        // Clear the form when submitting
-        $("#note.title").val("");
-        $("#note.text").val("");
-      });
-
-  });
-
-
-*/
-
-
-/* Retrieved from the server:
-
-function runNoteQuery() {
-    // The AJAX function uses the URL of our API to GET the data associated with it (initially set to localhost)
-    $.ajax({ url: "/api/notes", method: "GET" })
-      .then(function(notes) {
-
-        // Here we then log the notes to console, where it will show up as an object.
-        console.log(notes);
-        console.log("------------------------------------");
-
-        // Loop through and display each of the notes
-        for (var i = 0; i < notes.length; i++) {
-
-          // Get a reference to the notesList element and populate it with tables
-          var notes = $("#noteList");
-
-          // Then display the fields in the HTML (Section Name, Date, URL)
-          var listItem = $("<li class='list-group-item mt-4'>");
-
-          listItem.append(
-            $("<h2>").text("Note #" + (i + 1)),
-            $("<hr>"),
-            $("<h2>").text("Note title: " + notes[i].title),
-            $("<h2>").text("Note text : " + notes[i].noteText),
-          );
-
-          noteList.append(listItem);
-        }
-      });
-  }
-
-  // This function resets all of the data in our notes. This is intended to let you restart a demo.
-  function clearNote() {
-    alert("Clearing...");
-
-    // Clear the notes on the server and then empty the elements on the client
-    $.ajax({ url: "/api/clear", method: "POST" }).then(function() {
-      $("#noteList").empty();
-    });
-  }
-
-  $("#clear").on("click", clearTable);
-
-
-  // Run Queries!
-  // ==========================================
-  runNoteQuery();
-*/
