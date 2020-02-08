@@ -51,6 +51,13 @@ module.exports = function(app) {
     // req.body is available since we're using the body parsing middleware
     //if (notes.length < 5) {
       notes.push(req.body);
+/* add ordered ID to notes */
+      fs.writeFile("journal.json", JSON.stringify(notes), function(err) {
+        if (err) {
+          throw err;
+        }
+      });
+
       res.json(true);
  /*   }
     else {
@@ -67,31 +74,11 @@ module.exports = function(app) {
     // notes.length = 0;
     var id = req.params.id;
 
-    fs.unlink(app.get('file-path'), function (e) {
- 
-      if (e) {
 
-          app.set('mess', e.message);
-          next();
+    notes.splice(notes.id, 1);
 
-      } 
-      
-      else {
 
-          res.json({
-
-              mess: 'file deleted',
-              path: app.get('file-path')
-
-          });
-
-      }
-
-    
-  //  waitListData.length = 0;
-
-    res.json({ ok: true });
-  });
+  
 });
 };
 
