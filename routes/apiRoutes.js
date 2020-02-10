@@ -52,6 +52,7 @@ module.exports = function(app) {
     //if (notes.length < 5) {
       notes.push(req.body);
 /* add ordered ID to notes */
+req.body.id = notes.length;
       fs.writeFile("journal.json", JSON.stringify(notes), function(err) {
         if (err) {
           throw err;
@@ -73,13 +74,25 @@ module.exports = function(app) {
     // Sets length of note to 0
     // notes.length = 0;
     var id = req.params.id;
-
-
     notes.splice(notes.id, 1);
+    console.log("I just deleted")
+   
+    //write back to journal.json
+    fs.writeFile("journal.json", JSON.stringify(notes), function(err) {
+      if (err) {
+        throw err;
+      }
+    });
 
+    res.json(true);
+/*   }
+  else {
+    waitListData.push(req.body);
+    res.json(false);
+  } */
+});
 
   
-});
 };
 
 /* fs.unlink(app.get('file-path'), function (e) {
